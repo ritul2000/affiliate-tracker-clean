@@ -1,0 +1,136 @@
+<%- include('../partials/header') %>
+<div class="wrapper">
+  <%- include('../partials/sidebar') %>
+  <div class="main-content">
+    <h2>Reports</h2>
+
+    <!-- Summary Cards -->
+    <div class="row mt-4">
+      <div class="col-md-3">
+        <div class="stat-card">
+          <i class="fas fa-mouse-pointer"></i>
+          <h3><%= clicks.length %></h3>
+          <p>Total Clicks</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <i class="fas fa-check-circle"></i>
+          <h3><%= conversions.length %></h3>
+          <p>Total Conversions</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Offer-wise Performance -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5>📊 Offer-wise Performance</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr><th>Offer</th><th>Total Clicks</th><th>Total Conversions</th></tr>
+          </thead>
+          <tbody>
+            <% 
+              const offerStats = {};
+              clicks.forEach(c => {
+                if (!offerStats[c.offer_name]) offerStats[c.offer_name] = { clicks: 0, conversions: 0 };
+                offerStats[c.offer_name].clicks++;
+              });
+              conversions.forEach(c => {
+                if (!offerStats[c.offer_name]) offerStats[c.offer_name] = { clicks: 0, conversions: 0 };
+                offerStats[c.offer_name].conversions++;
+              });
+              Object.entries(offerStats).forEach(([offer, stats]) => {
+            %>
+            <tr>
+              <td><%= offer %></td>
+              <td><span class="badge bg-primary"><%= stats.clicks %></span></td>
+              <td><span class="badge bg-success"><%= stats.conversions %></span></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Publisher-wise Performance -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5>👥 Publisher-wise Performance</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr><th>Publisher</th><th>Total Clicks</th><th>Total Conversions</th></tr>
+          </thead>
+          <tbody>
+            <% 
+              const pubStats = {};
+              clicks.forEach(c => {
+                if (!pubStats[c.publisher_name]) pubStats[c.publisher_name] = { clicks: 0, conversions: 0 };
+                pubStats[c.publisher_name].clicks++;
+              });
+              conversions.forEach(c => {
+                if (!pubStats[c.publisher_name]) pubStats[c.publisher_name] = { clicks: 0, conversions: 0 };
+                pubStats[c.publisher_name].conversions++;
+              });
+              Object.entries(pubStats).forEach(([pub, stats]) => {
+            %>
+            <tr>
+              <td><%= pub %></td>
+              <td><span class="badge bg-primary"><%= stats.clicks %></span></td>
+              <td><span class="badge bg-success"><%= stats.conversions %></span></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- All Clicks -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5>🖱️ All Clicks (<%= clicks.length %>)</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr><th>Click ID</th><th>Publisher</th><th>Offer</th><th>IP</th><th>Time</th></tr>
+          </thead>
+          <tbody>
+            <% clicks.forEach(c => { %>
+            <tr>
+              <td><small><%= c.click_id %></small></td>
+              <td><%= c.publisher_name %></td>
+              <td><%= c.offer_name %></td>
+              <td><%= c.ip_address %></td>
+              <td><%= new Date(c.clicked_at).toLocaleString() %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- All Conversions -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5>✅ All Conversions (<%= conversions.length %>)</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr><th>Click ID</th><th>Publisher</th><th>Offer</th><th>Time</th></tr>
+          </thead>
+          <tbody>
+            <% conversions.forEach(c => { %>
+            <tr>
+              <td><small><%= c.click_id %></small></td>
+              <td><%= c.publisher_name %></td>
+              <td><%= c.offer_name %></td>
+              <td><%= new Date(c.converted_at).toLocaleString() %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body></html>

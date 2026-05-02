@@ -1,0 +1,52 @@
+<%- include('../partials/header') %>
+<div class="wrapper">
+  <%- include('../partials/sidebar') %>
+  <div class="main-content">
+    <h2>Assign Offers to Publishers</h2>
+    <div class="card mt-4">
+      <div class="card-body">
+        <form method="POST" action="/admin/assign" class="row g-3">
+          <div class="col-md-5">
+            <select name="publisher_id" class="form-select" required>
+              <option value="">Select Publisher</option>
+              <% publishers.forEach(pub => { %>
+                <option value="<%= pub.id %>"><%= pub.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="col-md-5">
+            <select name="offer_id" class="form-select" required>
+              <option value="">Select Offer</option>
+              <% offers.forEach(offer => { %>
+                <option value="<%= offer.id %>"><%= offer.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Assign</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr><th>Publisher</th><th>Offer</th><th>Tracking Link</th><th>Assigned</th></tr>
+          </thead>
+          <tbody>
+            <% assignments.forEach(a => { %>
+            <tr>
+              <td><%= a.publisher_name %></td>
+              <td><%= a.offer_name %></td>
+              <td><small><a href="<%= a.tracking_link %>" target="_blank"><%= a.tracking_link %></a></small></td>
+              <td><%= new Date(a.assigned_at).toLocaleDateString() %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

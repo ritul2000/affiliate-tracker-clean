@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="sidebar-brand"><h4>🎯 Publisher Panel</h4></div>
+    <ul class="sidebar-menu">
+      <li><a href="/publisher/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="/publisher/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <h2>Welcome, <%= publisher.name %>!</h2>
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="stat-card">
+          <i class="fas fa-mouse-pointer"></i>
+          <h3><%= totalClicks %></h3>
+          <p>Your Clicks</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card">
+          <i class="fas fa-check-circle"></i>
+          <h3><%= totalConversions %></h3>
+          <p>Your Conversions</p>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5>Your Assigned Offers & Tracking Links</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr><th>Offer</th><th>Payout</th><th>Model</th><th>Tracking Link</th></tr>
+          </thead>
+          <tbody>
+            <% offers.forEach(o => { %>
+            <tr>
+              <td><%= o.offer_name %></td>
+              <td>₹<%= o.payout %></td>
+              <td><%= o.model %></td>
+              <td><small><a href="<%= o.tracking_link %>" target="_blank"><%= o.tracking_link %></a></small></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

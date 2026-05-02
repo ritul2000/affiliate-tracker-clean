@@ -1,0 +1,24 @@
+{
+  "name": "affiliate-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "bullmq": "^5.76.4",
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "ioredis": "^5.10.1",
+    "mysql2": "^3.22.2",
+    "node-fetch": "^3.3.2",
+    "uuid": "^14.0.0"
+  }
+}

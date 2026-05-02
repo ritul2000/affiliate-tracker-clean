@@ -1,0 +1,242 @@
+<!-- <%- include('../partials/header') %>
+<div class="wrapper">
+  <%- include('../partials/sidebar') %>
+  <div class="main-content">
+    <h2>Manage Offers</h2>
+
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5>Add New Offer</h5>
+        <form method="POST" action="/admin/offers/add">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <input type="text" name="name"
+              class="form-control"
+              placeholder="Offer Name" required>
+            </div>
+            <div class="col-md-2">
+              <input type="number" name="payout"
+              class="form-control"
+              placeholder="Payout"
+              step="0.01" required>
+            </div>
+            <div class="col-md-2">
+              <input type="text" name="category"
+              class="form-control"
+              placeholder="Category">
+            </div>
+            <div class="col-md-2">
+              <select name="model" class="form-select">
+                <option value="CPA">CPA</option>
+                <option value="CPL">CPL</option>
+                <option value="CPC">CPC</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <select name="status" class="form-select">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <input type="text" name="offer_url"
+              class="form-control"
+              placeholder="https://example.com?click_id={click_id}&pub_id={pub_id}&source={source}">
+            </div>
+            <div class="col-md-2">
+              <button type="submit"
+              class="btn btn-primary w-100">Add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Payout</th>
+              <th>Client URL</th>
+              <th>Category</th>
+              <th>Model</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% offers.forEach(offer => { %>
+            <tr>
+              <td><%= offer.id %></td>
+              <td><%= offer.name %></td>
+              <td>₹<%= offer.payout %></td>
+              <td>
+                <small>
+                  <%= offer.offer_url ?
+                  offer.offer_url.substring(0,40) + '...' :
+                  'Not set' %>
+                </small>
+              </td>
+              <td><%= offer.category %></td>
+              <td><%= offer.model %></td>
+              <td>
+                <span class="badge <%= offer.status === 'Active' ? 'bg-success' : 'bg-danger' %>">
+                  <%= offer.status %>
+                </span>
+              </td>
+              <td>
+                <a href="/admin/offers/edit-page/<%= offer.id %>"
+                class="btn btn-warning btn-sm">Edit</a>
+                <a href="/admin/offers/delete/<%= offer.id %>"
+                class="btn btn-danger btn-sm"
+                onclick="return confirm('Delete?')">Delete</a>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body></html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('../partials/header') %>
+
+<div class="wrapper">
+  <%- include('../partials/sidebar') %>
+
+  <div class="main-content">
+
+    <h2>Manage Offers</h2>
+
+    <!-- ADD OFFER -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5>Add New Offer</h5>
+
+        <form method="POST" action="/admin/offers/add">
+          <div class="row g-2">
+
+            <div class="col">
+              <input type="text" name="name" class="form-control" placeholder="Offer Name" required>
+            </div>
+
+            <div class="col">
+              <input type="number" name="payout" class="form-control" placeholder="Payout" required>
+            </div>
+
+            <div class="col">
+              <input type="text" name="category" class="form-control" placeholder="Category">
+            </div>
+
+            <div class="col">
+              <select name="model" class="form-select">
+                <option value="CPA">CPA</option>
+                <option value="CPL">CPL</option>
+                <option value="CPC">CPC</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <select name="status" class="form-select">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+            <div class="col-12 mt-2">
+              <input type="text" name="client_url" class="form-control"
+                placeholder="http://localhost:3000/advertiser-page?click_id={click_id}&pub_id={pub_id}&source={source}">
+            </div>
+
+            <div class="col-12 mt-2">
+              <button class="btn btn-primary">Add</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- OFFERS TABLE -->
+    <div class="card">
+      <div class="card-body">
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Payout</th>
+              <th>Client URL</th>
+              <th>Category</th>
+              <th>Model</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% offers.forEach(o => { %>
+              <tr>
+                <td><%= o.id %></td>
+                <td><%= o.name %></td>
+                <td>₹<%= o.payout %></td>
+                <td><%= o.client_url || 'Not set' %></td>
+                <td><%= o.category %></td>
+                <td><%= o.model %></td>
+                <td><%= o.status %></td>
+                <td>
+                  <a href="/admin/offers/edit/<%= o.id %>" class="btn btn-warning btn-sm">Edit</a>
+                  <a href="/admin/offers/delete/<%= o.id %>" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

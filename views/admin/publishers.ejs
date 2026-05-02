@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+<div class="wrapper">
+  <%- include('../partials/sidebar') %>
+  <div class="main-content">
+    <h2>Manage Publishers</h2>
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5>Add New Publisher</h5>
+        <form method="POST" action="/admin/publishers/add" class="row g-3">
+          <div class="col-md-4">
+            <input type="text" name="name" class="form-control" placeholder="Publisher Name" required>
+          </div>
+          <div class="col-md-4">
+            <input type="email" name="email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="col-md-3">
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+          </div>
+          <div class="col-md-1">
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr><th>ID</th><th>Name</th><th>Email</th><th>Created</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <% publishers.forEach(pub => { %>
+            <tr>
+              <td><%= pub.id %></td>
+              <td><%= pub.name %></td>
+              <td><%= pub.email %></td>
+              <td><%= new Date(pub.created_at).toLocaleDateString() %></td>
+              <td><a href="/admin/publishers/delete/<%= pub.id %>" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

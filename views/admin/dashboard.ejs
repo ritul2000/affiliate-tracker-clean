@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<div class="wrapper">
+  <%- include('../partials/sidebar') %>
+  <div class="main-content">
+    <h2>Dashboard</h2>
+    <div class="row mt-4">
+      <div class="col-md-3">
+        <div class="stat-card">
+          <i class="fas fa-tag"></i>
+          <h3><%= totalOffers %></h3>
+          <p>Total Offers</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <i class="fas fa-users"></i>
+          <h3><%= totalPublishers %></h3>
+          <p>Total Publishers</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <i class="fas fa-mouse-pointer"></i>
+          <h3><%= totalClicks %></h3>
+          <p>Total Clicks</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <i class="fas fa-check-circle"></i>
+          <h3><%= totalConversions %></h3>
+          <p>Total Conversions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

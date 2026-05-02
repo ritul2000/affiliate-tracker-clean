@@ -1,0 +1,172 @@
+<!-- <%- include('../partials/header') %>
+<div class="wrapper">
+  <%- include('../partials/sidebar') %>
+  <div class="main-content">
+    <h2>Edit Offer</h2>
+    <div class="card mt-4">
+      <div class="card-body">
+        <form method="POST" action="/admin/offers/edit">
+          <input type="hidden" name="id" value="<%= offer.id %>">
+          <div class="mb-3">
+            <label>Offer Name</label>
+            <input type="text" name="name"
+            class="form-control"
+            value="<%= offer.name %>" required>
+          </div>
+          <div class="mb-3">
+            <label>Payout</label>
+            <input type="number" name="payout"
+            class="form-control"
+            value="<%= offer.payout %>"
+            step="0.01" required>
+          </div>
+          <div class="mb-3">
+            <label>Category</label>
+            <input type="text" name="category"
+            class="form-control"
+            value="<%= offer.category %>">
+          </div>
+          <div class="mb-3">
+            <label>Model</label>
+            <select name="model" class="form-select">
+              <option value="CPA" <%= offer.model === 'CPA' ? 'selected' : '' %>>CPA</option>
+              <option value="CPL" <%= offer.model === 'CPL' ? 'selected' : '' %>>CPL</option>
+              <option value="CPC" <%= offer.model === 'CPC' ? 'selected' : '' %>>CPC</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Status</label>
+            <select name="status" class="form-select">
+              <option value="Active" <%= offer.status === 'Active' ? 'selected' : '' %>>Active</option>
+              <option value="Inactive" <%= offer.status === 'Inactive' ? 'selected' : '' %>>Inactive</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Client URL</label>
+            <input type="text" name="offer_url"
+            class="form-control"
+            value="<%= offer.offer_url || '' %>"
+            placeholder="https://example.com?click_id={click_id}&pub_id={pub_id}">
+            <small class="text-muted">
+              Available: {click_id} {pub_id} {source} {offer_id}
+            </small>
+          </div>
+          <button type="submit" class="btn btn-warning">
+            Save Changes
+          </button>
+          <a href="/admin/offers" class="btn btn-secondary ms-2">
+            Cancel
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('../partials/header') %>
+
+<div class="wrapper">
+  <%- include('../partials/sidebar') %>
+
+  <div class="main-content">
+    <h2>Edit Offer</h2>
+
+    <div class="card mt-4">
+      <div class="card-body">
+
+        <form method="POST" action="/admin/offers/edit">
+          <input type="hidden" name="id" value="<%= offer.id %>">
+
+          <div class="mb-3">
+            <label>Offer Name</label>
+            <input type="text" name="name" class="form-control"
+              value="<%= offer.name %>" required>
+          </div>
+
+          <div class="mb-3">
+            <label>Payout</label>
+            <input type="number" name="payout" class="form-control"
+              value="<%= offer.payout %>" step="0.01" required>
+          </div>
+
+          <div class="mb-3">
+            <label>Category</label>
+            <input type="text" name="category" class="form-control"
+              value="<%= offer.category %>">
+          </div>
+
+          <div class="mb-3">
+            <label>Model</label>
+            <select name="model" class="form-select">
+              <option value="CPA" <%= offer.model === 'CPA' ? 'selected' : '' %>>CPA</option>
+              <option value="CPL" <%= offer.model === 'CPL' ? 'selected' : '' %>>CPL</option>
+              <option value="CPC" <%= offer.model === 'CPC' ? 'selected' : '' %>>CPC</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label>Status</label>
+            <select name="status" class="form-select">
+              <option value="Active" <%= offer.status === 'Active' ? 'selected' : '' %>>Active</option>
+              <option value="Inactive" <%= offer.status === 'Inactive' ? 'selected' : '' %>>Inactive</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label>Client URL</label>
+            <input type="text" name="client_url" class="form-control"
+              value="<%= offer.client_url || '' %>"
+              placeholder="http://localhost:3000/advertiser-page?click_id={click_id}&pub_id={pub_id}&source={source}">
+          </div>
+
+          <button type="submit" class="btn btn-warning">Save Changes</button>
+          <a href="/admin/offers" class="btn btn-secondary ms-2">Cancel</a>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
